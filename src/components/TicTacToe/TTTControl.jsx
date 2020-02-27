@@ -5,7 +5,10 @@ import TicTacToe from './TicTacToe';
 function TTTControl(props) {
     return (
         <div>
-            <TicTacToe current={props.current} cells={props.cells} />
+            <TicTacToe
+                currentPlayer={props.currentPlayer}
+                cells={props.cells}
+            />
         </div>
     );
 }
@@ -13,7 +16,7 @@ function TTTControl(props) {
 const mapStateToProps = state => {
     return {
         cells: state.board,
-        current: state.activePlayer,
+        currentPlayer: state.activePlayer,
     };
 };
 

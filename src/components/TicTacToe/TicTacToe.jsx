@@ -17,7 +17,7 @@ export default function TicTacToe(props) {
                 row.map((val, j) => (
                     <Cell
                         value={val}
-                        current={props.current}
+                        currentPlayer={props.currentPlayer}
                         location={[i, j]}
                         key={i + j}
                     />
