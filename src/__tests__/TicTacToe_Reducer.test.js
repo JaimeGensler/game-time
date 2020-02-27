@@ -1,4 +1,4 @@
-import { ticTacToeReducer } from './../reducers/tic-tac-toe-reducer';
+import { ticTacToeReducer } from '../reducers/TicTacToe_Reducer';
 
 describe('ticTacToeReducer', () => {
     test('should return default state if no action type is recognized', () => {
@@ -31,6 +31,7 @@ describe('ticTacToeReducer', () => {
             });
             expect(result.board).toEqual(expected);
         });
+
         test.each([[1, -1], [-1, 1]])(
             'changes activePlayer - (%d => %d)',
             (input, expected) => {
@@ -41,6 +42,7 @@ describe('ticTacToeReducer', () => {
                 expect(result.activePlayer).toEqual(expected);
             }
         );
+
         test.each([[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8]])(
             'increment turnNumber - (%d => %d)',
             (input, expected) => {
@@ -51,6 +53,7 @@ describe('ticTacToeReducer', () => {
                 expect(result.turnNumber).toEqual(expected);
             }
         );
+
         test.each([
             [[[0, 1, 1], [0, 0, 0], [0, 0, 0]], 'WIN'],
             [[[0, 0, 0], [1, 0, 0], [1, 0, 0]], 'WIN'],

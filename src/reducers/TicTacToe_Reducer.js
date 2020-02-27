@@ -1,21 +1,21 @@
-export function ticTacToeReducer(state = {}, action) {
-    // const newState = Object.assign({}, state);
+export function ticTacToeReducer(state = initialState, action) {
     const newState = { ...state };
     switch (action.type) {
         case 'MAKE_MOVE':
-            const { location } = action;
+            const [row, column] = action.location;
             newState.board = newState.board.map(x => x.map(y => y));
-            newState.board[location[0]][location[1]] = newState.activePlayer;
+            newState.board[row][column] = newState.activePlayer;
             const { board } = newState;
+
             if (newState.turnNumber > 4) {
                 const check = [];
                 check.push(
-                    Math.abs(board[location[0]].reduce((acc, val) => acc + val))
+                    Math.abs(board[row].reduce((acc, val) => acc + val))
                 );
                 check.push(
                     Math.abs(
                         board
-                            .map(x => x[location[1]])
+                            .map(x => x[column])
                             .reduce((acc, val) => acc + val)
                     )
                 );
@@ -24,6 +24,7 @@ export function ticTacToeReducer(state = {}, action) {
                 if (newState.turnNumber === 9) newState.gameState = 'TIE';
                 if (check.includes(3)) newState.gameState = 'WIN';
             }
+
             if (newState.gameState === 'ACTIVE') {
                 newState.activePlayer *= -1;
                 newState.turnNumber++;
@@ -35,15 +36,9 @@ export function ticTacToeReducer(state = {}, action) {
     return newState;
 }
 
-//
-
-//
-
-// {
-//     board: [
-//         [0, 0, 0],
-//         [0, 0, 0],
-//         [0, 0, 0]],
-//     activePlayer: 1,
-//     gameState: 'ACTIVE',
-// }
+const initialState = {
+    board: Array(3).fill(Array(3).fill(0)),
+    gameState: 'ACTIVE',
+    activePlayer: Math.random() < 0.5 ? 1 : -1,
+    turnNumber: 1,
+};

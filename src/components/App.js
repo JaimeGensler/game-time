@@ -1,7 +1,10 @@
 import React from 'react';
+import TTTControl from './TicTacToe/TTTControl.jsx';
 
-function App() {
-    return <div></div>;
+export default function App() {
+    return (
+        <div>
+            <TTTControl />
+        </div>
+    );
 }
-
-export default App;
